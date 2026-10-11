@@ -4,7 +4,7 @@ export const profile = {
   name: "Keval Dhol",
   initials: "KD.",
   role: "Full-stack Engineer",
-  location: "India · Remote",
+  location: "Ahmedabad, India · Remote",
   timeZone: "Asia/Kolkata",
   email: "hello@kevaldhol.com",
   available: true,
@@ -19,12 +19,12 @@ export const profile = {
   ],
 };
 
-/** Counts taken from the projects below. */
+/** Years from the experience list (Nov 2021 onward); the rest are counts from the projects. */
 export const stats: { value: number; suffix: string; label: string; decimals?: number }[] = [
+  { value: 5, suffix: "", label: "Years building software" },
   { value: 5, suffix: "", label: "Platforms delivered" },
   { value: 10, suffix: "", label: "Third-party integrations" },
   { value: 5, suffix: "", label: "Industries" },
-  { value: 2, suffix: "", label: "Contact centres built" },
 ];
 
 export const skills = [
@@ -124,22 +124,28 @@ export const projects: Project[] = [
 
 export const experience = [
   {
-    period: "2024 — Now",
+    period: "Jul 2025 — Now",
     role: "Senior Software Engineer",
-    company: "Independent",
-    body: "Leading platform builds for commerce and logistics teams — architecture, delivery and mentoring.",
+    company: "TatvaSoft",
+    body: "Leading delivery on client platforms: talking to clients, shaping requirements, building features and reviewing the team's code through to release.",
   },
   {
-    period: "2021 — 2024",
-    role: "Full-stack Engineer",
-    company: "Product studio",
-    body: "Shipped a dozen client products, owning everything from API design to the design system.",
-  },
-  {
-    period: "2018 — 2021",
+    period: "Jul 2023 — Jun 2025",
     role: "Software Engineer",
-    company: "SaaS start-up",
-    body: "Grew from first front-end hire to owning the billing and reporting services.",
+    company: "TatvaSoft",
+    body: "Turned requirements into shipped features across client projects, reviewed pull requests and kept the documentation current.",
+  },
+  {
+    period: "Jul 2022 — Jun 2023",
+    role: "Assistant Software Engineer",
+    company: "TatvaSoft",
+    body: "Built features with React and PostgreSQL, wrote documentation and tested releases.",
+  },
+  {
+    period: "Nov 2021 — Jun 2022",
+    role: "Internship Trainee",
+    company: "TatvaSoft",
+    body: "Learned the craft on React and Node.js, working on real client code from the first month.",
   },
 ];
 
