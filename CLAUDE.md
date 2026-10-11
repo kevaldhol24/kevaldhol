@@ -1,9 +1,9 @@
 # CLAUDE.md
 
-Personal portfolio — built on React Router 8 (framework mode, prerendered to static HTML), Vite,
-Tailwind CSS 4, three.js and anime.js. No database, no auth, no backend. Deployed as static
-files to Cloudflare Pages: new routes must be added to `prerender` in `react-router.config.ts`,
-and loaders/actions won't work (`ssr: false`).
+Keval Dhol's portfolio (kevaldhol.com) — a single page styled as a terminal session, built on
+React Router 8 (framework mode, prerendered to static HTML), Vite and Tailwind CSS 4. No
+database, no auth, no backend. Deployed as static files to Cloudflare Pages: new routes must be
+added to `prerender` in `react-router.config.ts`, and loaders/actions won't work (`ssr: false`).
 
 ## Commands
 
@@ -16,25 +16,23 @@ Node from `.nvmrc` (React Router 8 needs >= 22.22); pnpm pinned via `packageMana
 ## Layout
 
 - `app/content/portfolio.ts` — every piece of copy. Change content here, not in components.
-- `app/routes/home.tsx` — the only route; `app/routes.ts` registers it as the index.
-- `app/three/portfolio-scene.ts` — three.js scene class. Imported dynamically from
-  `components/scene-canvas.tsx` so it never runs during SSR and ships in its own chunk.
-- `components/scene-canvas.tsx` `KEYFRAMES` — one keyframe per `[data-scene]` section, in DOM
-  order. Adding/removing a section means adding/removing a keyframe.
-- `app/routes/terminal.tsx` — `/terminal`, the same content as a terminal session. Its
-  `SECTIONS` list sets each section's command, side (alternating) and ASCII shape;
-  `app/terminal/ascii-model.ts` is the character renderer, `app/terminal/commands.tsx` the
-  hero mini-shell's commands. Terminal-only copy (`asciiName`, `skillGroups`, `education`)
-  lives at the bottom of `portfolio.ts`.
-- `app/motion/use-reveals.ts` — anime.js. Markup opts in via `data-split` (with `<SplitText>`),
-  `data-reveal`, `data-stagger`, `data-count`, `data-hero`, `data-magnetic`. Hidden "before"
-  states live in `app.css` behind `.js` + `prefers-reduced-motion: no-preference`.
+- `app/routes/home.tsx` — the only route. Its `SECTIONS` list sets each section's command,
+  tmux label and ASCII shape, in page order; sides alternate left/right automatically.
+- `app/terminal/ascii-model.ts` — the ASCII 3D renderer and one point-cloud model per section
+  (`SAMPLERS`). Adding a section means picking or adding a `ShapeName`.
+- `app/components/terminal/ascii-canvas.tsx` — runs the renderer client-side, maps scroll to
+  morph/rotation and moves the model to the free side.
+- `app/terminal/commands.tsx` — commands understood by the hero's mini shell.
+- `app/components/terminal/` — section bodies, `TermSection` (typed command + reveal), mini
+  shell, tmux bar. Hidden "before typing" states live in `app.css` behind `.js` +
+  `prefers-reduced-motion: no-preference`.
 
 ## Conventions
 
 - Imports use the `~/` alias (relative imports are banned by ESLint), except `./+types/*`,
   same-directory CSS, and `app/routes.ts`.
-- Theme tokens (`ink`, `paper`, `mute`, `line`, `ember`, `iris`, `lime`) and fonts are defined
+- Theme tokens (`ink`, `paper`, `mute`, `dim`, `line`, `ember`, `iris`, `mint`, `pink`, `gold`) and the
+  JetBrains Mono font are defined
   in `app/app.css` `@theme`. Use them rather than raw colours.
 - Prettier: double quotes, semicolons, 100-char width, Tailwind class sorting.
-- Keep everything usable with reduced motion, without WebGL, and without JavaScript.
+- Keep everything usable with reduced motion and without JavaScript.

@@ -24,7 +24,7 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300..800&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300..800&display=swap",
   },
 ];
 
@@ -63,23 +63,28 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   if (isRouteErrorResponse(error)) {
     message = error.status === 404 ? "404" : "Error";
     details =
-      error.status === 404 ? "This page drifted out of orbit." : error.statusText || details;
+      error.status === 404 ? "zsh: no such file or directory." : error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message;
     stack = error.stack;
   }
 
   return (
-    <main className="flex min-h-dvh flex-col items-center justify-center gap-6 px-5 text-center">
-      <h1 className="font-display text-gradient text-[clamp(5rem,20vw,14rem)] leading-none font-medium tracking-tighter">
+    <main className="term-page grid min-h-dvh content-center gap-5 px-5 font-mono sm:px-[8vw]">
+      <p className="text-[15px]">
+        <span className="text-mint">keval@portfolio</span>
+        <span className="text-dim">:</span>
+        <span className="text-iris">~</span>$ open {message === "404" ? "this-page" : "page"}
+      </p>
+      <h1 className="term-gradient text-[clamp(4rem,16vw,10rem)] leading-none font-extrabold tracking-[-0.04em]">
         {message}
       </h1>
-      <p className="text-mute text-lg">{details}</p>
-      <a href="/" className="bg-paper text-ink rounded-full px-6 py-3 font-medium">
-        Take me home
+      <p className="text-mute">{details}</p>
+      <a href="/" className="term-link w-fit">
+        cd ~
       </a>
       {stack ? (
-        <pre className="border-line text-mute mt-6 w-full max-w-4xl overflow-x-auto rounded-2xl border p-4 text-left text-xs">
+        <pre className="border-line text-mute w-full max-w-4xl overflow-x-auto rounded-lg border p-4 text-xs">
           <code>{stack}</code>
         </pre>
       ) : null}

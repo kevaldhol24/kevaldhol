@@ -1,7 +1,8 @@
-# Portfolio
+# kevaldhol.com
 
-A portfolio built on React Router 8 (framework mode, prerendered to static HTML) + Vite + Tailwind CSS 4,
-with a scroll-driven three.js centrepiece and anime.js motion.
+Keval Dhol's portfolio: one page styled as a terminal session, with a scroll-driven 3D model
+rendered in ASCII characters. Built on React Router 8 (framework mode, prerendered to static
+HTML), Vite and Tailwind CSS 4.
 
 ## Getting started
 
@@ -20,18 +21,16 @@ personalise the page.
 
 ## How it fits together
 
-| Path                              | What                                                                                                             |
-| --------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `app/routes/home.tsx`             | The one page: nav, sections, canvas, cursor                                                                      |
-| `app/three/portfolio-scene.ts`    | three.js scene — shader core, wire shell, rings, particles                                                       |
-| `app/components/scene-canvas.tsx` | Loads the scene client-side and maps scroll → per-section keyframes                                              |
-| `app/motion/use-reveals.ts`       | anime.js entrances (`data-split` / `data-reveal` / `data-stagger` / `data-count`), hero timeline, magnetic hover |
-| `app/components/*`                | Sections (hero, about, work, experience, contact) and UI pieces                                                  |
-| `app/app.css`                     | Theme tokens, split-text masks, cards, cursor, grain                                                             |
+| Path                                       | What                                                           |
+| ------------------------------------------ | -------------------------------------------------------------- |
+| `app/routes/home.tsx`                      | The page: `SECTIONS` (command, label, ASCII shape per section) |
+| `app/terminal/ascii-model.ts`              | ASCII 3D renderer and the per-section models                   |
+| `app/components/terminal/ascii-canvas.tsx` | Maps scroll to morphing, rotation and left/right placement     |
+| `app/terminal/commands.tsx`                | Commands for the interactive mini shell                        |
+| `app/components/terminal/*`                | Section bodies, typed-command sections, mini shell, tmux bar   |
+| `app/app.css`                              | Theme tokens and terminal effects                              |
 
-To retune how the 3D object behaves per section, edit `KEYFRAMES` in `scene-canvas.tsx` (one
-entry per `[data-scene]` section, in page order). The page respects `prefers-reduced-motion`
-and degrades gracefully without WebGL or JavaScript.
+The page respects `prefers-reduced-motion` and works without JavaScript (content is prerendered).
 
 ## Scripts
 
