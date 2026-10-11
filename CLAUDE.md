@@ -1,7 +1,9 @@
 # CLAUDE.md
 
-Personal portfolio — a single page built on React Router 8 (framework mode, SSR), Vite,
-Tailwind CSS 4, three.js and anime.js. No database, no auth, no backend.
+Personal portfolio — built on React Router 8 (framework mode, prerendered to static HTML), Vite,
+Tailwind CSS 4, three.js and anime.js. No database, no auth, no backend. Deployed as static
+files to Cloudflare Pages: new routes must be added to `prerender` in `react-router.config.ts`,
+and loaders/actions won't work (`ssr: false`).
 
 ## Commands
 

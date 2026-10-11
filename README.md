@@ -1,6 +1,6 @@
 # Portfolio
 
-A single-page portfolio built on React Router 8 (framework mode, SSR) + Vite + Tailwind CSS 4,
+A portfolio built on React Router 8 (framework mode, prerendered to static HTML) + Vite + Tailwind CSS 4,
 with a scroll-driven three.js centrepiece and anime.js motion.
 
 ## Getting started
@@ -38,15 +38,22 @@ and degrades gracefully without WebGL or JavaScript.
 | Script           | Purpose                        |
 | ---------------- | ------------------------------ |
 | `pnpm dev`       | Dev server                     |
-| `pnpm build`     | Production build               |
-| `pnpm start`     | Serve the production build     |
+| `pnpm build`     | Static build → `build/client`  |
+| `pnpm start`     | Preview the static build       |
 | `pnpm typecheck` | `react-router typegen` + `tsc` |
 | `pnpm lint`      | ESLint                         |
 | `pnpm format`    | Prettier (write)               |
 
-## Docker
+## Deploy (Cloudflare Pages)
 
-```bash
-docker build -t portfolio .
-docker run --rm -p 3000:3000 portfolio
-```
+The site has no server code: `pnpm build` prerenders every route listed in
+`react-router.config.ts` into `build/client`, which Cloudflare Pages serves as static files
+(`public/_headers` sets caching, `404.html` handles unknown URLs).
+
+| Pages setting    | Value          |
+| ---------------- | -------------- |
+| Build command    | `pnpm build`   |
+| Output directory | `build/client` |
+| `NODE_VERSION`   | `22.23.2`      |
+
+Pushes to `main` deploy to production; other branches get preview URLs.
