@@ -1,68 +1,76 @@
 // Everything the page renders lives here — edit this file to make the portfolio yours.
 
 export const profile = {
-  name: "Keval",
-  initials: "K.",
+  name: "Keval Dhol",
+  initials: "KD.",
   role: "Full-stack Engineer",
-  location: "Remote · Europe",
-  timeZone: "Europe/Berlin",
-  email: "hello@example.com",
+  location: "India · Remote",
+  timeZone: "Asia/Kolkata",
+  email: "hello@kevaldhol.com",
   available: true,
   headline: ["Engineering", "calm software", "for loud problems."],
   intro:
-    "I design and build fast, resilient products end to end — from the database schema to the last pixel of the interface.",
+    "I design and build the systems behind busy operations, end to end — from the database schema to the last pixel of the interface.",
   about:
-    "I'm a senior engineer who likes the unglamorous parts: data models that age well, interfaces that feel obvious, and systems that keep working at three in the morning. I've shipped platforms for logistics, finance and commerce teams, and I care as much about the people using the software as the code behind it.",
+    "I'm a full-stack engineer working mostly in TypeScript. I've built Twilio Flex contact centres that take a customer from first call to a funded car-finance deal, a distributed operations platform for a refurbished-electronics business, and Sitecore front ends that let airline and banking teams publish without waiting on developers. I like the unglamorous parts: data models that age well, integrations that don't fall over, and interfaces that feel obvious to the people who use them all day.",
   socials: [
-    { label: "GitHub", href: "https://github.com/" },
-    { label: "LinkedIn", href: "https://www.linkedin.com/" },
-    { label: "X / Twitter", href: "https://x.com/" },
-    { label: "Read.cv", href: "https://read.cv/" },
+    { label: "GitHub", href: "https://github.com/kevaldhol24" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/keval-d-5b244316a/" },
   ],
 };
 
-export const stats = [
-  { value: 8, suffix: "+", label: "Years shipping" },
-  { value: 40, suffix: "+", label: "Products launched" },
-  { value: 12, suffix: "", label: "Teams supported" },
-  { value: 99.9, suffix: "%", label: "Uptime obsessed", decimals: 1 },
+/** Counts taken from the projects below. */
+export const stats: { value: number; suffix: string; label: string; decimals?: number }[] = [
+  { value: 5, suffix: "", label: "Platforms delivered" },
+  { value: 10, suffix: "", label: "Third-party integrations" },
+  { value: 5, suffix: "", label: "Industries" },
+  { value: 2, suffix: "", label: "Contact centres built" },
 ];
 
 export const skills = [
   "TypeScript",
   "React",
-  "React Router",
+  "React Router / Remix",
+  "Next.js",
+  "Angular",
+  "Tailwind CSS",
+  "Three.js",
   "Node.js",
   "NestJS",
-  "Angular",
+  "Express",
+  "NATS",
   "PostgreSQL",
   "MongoDB",
   "Redis",
-  "NATS",
+  "Prisma",
+  "Vendure",
   "Docker",
-  "Three.js",
-  "Tailwind CSS",
   "System Design",
+  "Twilio Flex",
+  "Sitecore",
+  "HubSpot",
+  "Shopify",
 ];
 
 export const services = [
   {
-    title: "Product engineering",
-    body: "Taking ideas from a napkin sketch to a production app, with the boring reliability baked in from day one.",
+    title: "Contact-centre platforms",
+    body: "Twilio Flex call centres wired into your CRM and back office, so agents handle the whole customer journey from one screen.",
   },
   {
-    title: "Platform & APIs",
-    body: "Event-driven back ends, clean domain boundaries, and integrations that don't fall over when a vendor does.",
+    title: "Operations & commerce systems",
+    body: "Distributed back ends that keep inventory, orders and accounting in sync across Shopify, Amazon, Zoho and the rest.",
   },
   {
-    title: "Interfaces & motion",
-    body: "Accessible, fast front ends with just enough motion to make them feel alive — never enough to get in the way.",
+    title: "CMS-driven front ends",
+    body: "Sitecore and Next.js sites your content team can run on its own, without a developer for every change.",
   },
 ];
 
 export type Project = {
   title: string;
-  year: string;
+  /** Optional until confirmed. */
+  year?: string;
   kind: string;
   summary: string;
   tags: string[];
@@ -73,40 +81,44 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: "Returnflow",
-    year: "2026",
-    kind: "Platform",
+    title: "Cykero",
+    kind: "Circular e-commerce",
     summary:
-      "An end-to-end returns platform: customer self-service, warehouse inspection queues and automated credit notes.",
-    tags: ["NestJS", "React Router", "NATS"],
-    palette: ["#ff6b3d", "#7c5cff"],
-  },
-  {
-    title: "Ledgerline",
-    year: "2025",
-    kind: "Fintech",
-    summary:
-      "Real-time cash-flow analytics across two legal entities, reconciling thousands of documents a day.",
-    tags: ["TypeScript", "MongoDB", "Charts"],
-    palette: ["#3dd6ff", "#2a3bff"],
-  },
-  {
-    title: "Stockroom",
-    year: "2025",
-    kind: "Operations",
-    summary:
-      "Inventory and inter-company transfers with saga-based compensation, so no unit is ever lost in transit.",
-    tags: ["CQRS", "BullMQ", "Angular"],
+      "A distributed platform behind a refurbished-electronics business: internal and customer-facing apps for inventory, accounting, returns and operations, kept in sync with Zoho, Shopify, Amazon, Linnworks and Refurbed.",
+    tags: ["NestJS", "React Router", "Next.js", "Angular", "PostgreSQL", "NATS", "Vendure"],
     palette: ["#c6ff3d", "#00a37a"],
   },
   {
-    title: "Orbit",
-    year: "2024",
-    kind: "Creative",
+    title: "Car Finance 247",
+    kind: "Contact centre",
     summary:
-      "A WebGL product configurator that renders a full device lineup in the browser at a smooth 60fps.",
-    tags: ["Three.js", "GLSL", "Motion"],
+      "A Twilio Flex contact centre that runs the whole car-finance journey, from first lead through car sale and loan to payment collection, so agents work every stage from one place.",
+    tags: ["Twilio Flex", "React", "TypeScript", "Redis"],
+    palette: ["#ff6b3d", "#7c5cff"],
+  },
+  {
+    title: "Fresha",
+    kind: "Contact centre",
+    summary:
+      "A Twilio-based customer support centre for a salon and spa booking marketplace, integrated with the company's existing HubSpot so agents see the customer and their bookings on every call.",
+    tags: ["Twilio Flex", "React", "Express", "TypeScript", "Redis", "HubSpot"],
     palette: ["#ff3d9a", "#ffb03d"],
+  },
+  {
+    title: "Royal Jordanian",
+    kind: "Aviation",
+    summary:
+      "A Sitecore-configurable front end that lets the airline's content team manage pages and policies without developers, plus a booking engine integrated with Amadeus and a miles-and-points system through Points.com.",
+    tags: ["Sitecore", "JavaScript", "jQuery", "Amadeus", "Points.com"],
+    palette: ["#3dd6ff", "#2a3bff"],
+  },
+  {
+    title: "Bank AlJazira",
+    kind: "Banking",
+    summary:
+      "A Sitecore-configurable brochure site that the bank's team manages end to end, built on Next.js and TypeScript.",
+    tags: ["Sitecore", "Next.js", "TypeScript"],
+    palette: ["#7c5cff", "#3dd6ff"],
   },
 ];
 
@@ -138,3 +150,45 @@ export const sections = [
   { id: "experience", label: "Experience" },
   { id: "contact", label: "Contact" },
 ] as const;
+
+/* ---------------------------------------------------------------------------
+   Terminal page (/terminal)
+   --------------------------------------------------------------------------- */
+
+/** `figlet -f "ANSI Shadow"` of the name, shown under `whoami`. */
+export const asciiName = String.raw`██╗  ██╗███████╗██╗   ██╗ █████╗ ██╗
+██║ ██╔╝██╔════╝██║   ██║██╔══██╗██║
+█████╔╝ █████╗  ██║   ██║███████║██║
+██╔═██╗ ██╔══╝  ╚██╗ ██╔╝██╔══██║██║
+██║  ██╗███████╗ ╚████╔╝ ██║  ██║███████╗
+╚═╝  ╚═╝╚══════╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝`;
+
+/** The same skills as above, grouped for `tree ~/skills`. */
+export const skillGroups = [
+  { name: "languages", items: ["TypeScript", "JavaScript"] },
+  {
+    name: "frontend",
+    items: ["React", "React Router / Remix", "Next.js", "Angular", "Tailwind CSS", "Three.js"],
+  },
+  { name: "backend", items: ["Node.js", "NestJS", "Express", "NATS", "Vendure"] },
+  { name: "data", items: ["PostgreSQL", "MongoDB", "Redis", "Prisma"] },
+  { name: "infra", items: ["Docker", "System Design"] },
+  { name: "platforms", items: ["Twilio Flex", "Sitecore", "HubSpot", "Shopify", "Zoho"] },
+];
+
+export type Education = {
+  degree: string;
+  school: string;
+  /** e.g. "2019 — 2023"; leave empty until confirmed. */
+  period?: string;
+  focus?: string[];
+};
+
+export const education: Education[] = [
+  {
+    degree: "B.E. Computer Engineering",
+    school: "Government Engineering College, Bhavnagar",
+  },
+];
+
+export const certifications: { name: string }[] = [];

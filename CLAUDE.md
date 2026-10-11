@@ -19,6 +19,11 @@ Node from `.nvmrc` (React Router 8 needs >= 22.22); pnpm pinned via `packageMana
   `components/scene-canvas.tsx` so it never runs during SSR and ships in its own chunk.
 - `components/scene-canvas.tsx` `KEYFRAMES` — one keyframe per `[data-scene]` section, in DOM
   order. Adding/removing a section means adding/removing a keyframe.
+- `app/routes/terminal.tsx` — `/terminal`, the same content as a terminal session. Its
+  `SECTIONS` list sets each section's command, side (alternating) and ASCII shape;
+  `app/terminal/ascii-model.ts` is the character renderer, `app/terminal/commands.tsx` the
+  hero mini-shell's commands. Terminal-only copy (`asciiName`, `skillGroups`, `education`)
+  lives at the bottom of `portfolio.ts`.
 - `app/motion/use-reveals.ts` — anime.js. Markup opts in via `data-split` (with `<SplitText>`),
   `data-reveal`, `data-stagger`, `data-count`, `data-hero`, `data-magnetic`. Hidden "before"
   states live in `app.css` behind `.js` + `prefers-reduced-motion: no-preference`.

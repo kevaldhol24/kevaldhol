@@ -13,6 +13,11 @@
   --color-ember: #ff6b3d;
   --color-iris: #7c5cff;
   --color-lime: #c6ff3d;
+  /* Terminal page (/terminal) */
+  --color-dim: #4d4859;
+  --color-mint: #7fe0b2;
+  --color-pink: #ff6fae;
+  --color-gold: #f2cf6b;
 
   --animate-marquee: marquee 38s linear infinite;
   --animate-scroll-cue: scroll-cue 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
@@ -274,4 +279,112 @@ body::before {
   margin: -36px 0 0 -36px;
   background: #fff;
   border-color: transparent;
+}
+
+/* ---------------------------------------------------------------------------
+   Terminal page (/terminal)
+   --------------------------------------------------------------------------- */
+.term-page {
+  min-height: 100dvh;
+  color: var(--color-paper);
+}
+.term-page ::selection {
+  background: rgb(255 122 77 / 0.3);
+  color: inherit;
+}
+/* Faint scanlines + vignette over everything. */
+.term-page::before,
+.term-page::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+}
+.term-page::before {
+  background: repeating-linear-gradient(0deg, rgb(255 255 255 / 0.018) 0 1px, transparent 1px 3px);
+}
+.term-page::after {
+  background: radial-gradient(120% 90% at 50% 40%, transparent 55%, rgb(0 0 0 / 0.55));
+}
+
+.term-gradient {
+  background: linear-gradient(
+    120deg,
+    var(--color-ember) 10%,
+    var(--color-pink) 50%,
+    var(--color-iris) 90%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.term-link {
+  color: var(--color-ember);
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: rgb(255 122 77 / 0.35);
+  text-underline-offset: 3px;
+}
+.term-link:hover {
+  text-decoration-color: currentColor;
+}
+
+.term-cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.15em;
+  margin-left: 2px;
+  vertical-align: -0.2em;
+  background: var(--color-ember);
+  visibility: hidden;
+}
+.term-cursor.is-on {
+  visibility: visible;
+  animation: term-blink 1.05s steps(1) infinite;
+}
+@keyframes term-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Typed-command reveal — only with JS and only when motion is welcome. */
+.term-out > * {
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.term-out > :nth-child(2) {
+  transition-delay: 70ms;
+}
+.term-out > :nth-child(3) {
+  transition-delay: 140ms;
+}
+.term-out > :nth-child(4) {
+  transition-delay: 210ms;
+}
+.term-out > :nth-child(5) {
+  transition-delay: 280ms;
+}
+.term-out > :nth-child(6) {
+  transition-delay: 350ms;
+}
+.term-out > :nth-child(n + 7) {
+  transition-delay: 420ms;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .js .term-sec[data-state="idle"] .term-cmd {
+    visibility: hidden;
+  }
+  .js .term-sec:not([data-state="shown"]) .term-out > * {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .term-cursor.is-on {
+    animation: none;
+  }
 }
